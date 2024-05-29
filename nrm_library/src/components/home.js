@@ -1,17 +1,20 @@
 // src/components/Home.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
-
-// Mock data - replace this with actual data fetching logic
-const literatureData = [
-    { id: 1, title: "1984", author: "George Orwell", year: "1949" },
-    { id: 2, title: "The Great Gatsby", author: "F. Scott Fitzgerald", year: "1925" },
-    { id: 3, title: "To Kill a Mockingbird", author: "Harper Lee", year: "1960" },
-    // Add more entries as needed
-];
+import { getBooks } from '../api';
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
+    const [literatureData, setLiteratureData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getBooks();
+            setLiteratureData(data);
+        };
+
+        fetchData();
+    }, []);
 
     const filteredData = literatureData.filter(item =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
