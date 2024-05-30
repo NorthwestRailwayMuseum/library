@@ -1,6 +1,6 @@
 // src/components/Home.js
 import React, { useState, useEffect } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
 import { getBooks } from '../api';
 
 function Home() {
@@ -22,7 +22,7 @@ function Home() {
     );
 
     return (
-        <div>
+        <Container maxWidth="md" style={{ marginTop: 20 }}>
             <TextField
                 label="Search Literature"
                 variant="outlined"
@@ -53,7 +53,7 @@ function Home() {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </Container>
     );
 }
 
