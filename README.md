@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/195dab89-60df-454b-81e4-2219b7a19f06/deploy-status)](https://app.netlify.com/sites/nrmlib/deploys)
+
 # Library
 
 
