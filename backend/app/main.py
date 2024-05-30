@@ -11,7 +11,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -29,3 +29,12 @@ async def read_books(skip: int = 0, limit: int = 10):
 @app.post("/books/", response_model=schemas.Book)
 async def create_book(book: schemas.BookCreate):
     return await crud.create_book(book)
+
+@app.get("/test-db/")
+async def test_db():
+    try:
+        collections = await database.list_collection_names()
+        return {"status": "success", "collections": collections}
+    except Exception as e:
+        logging.error(f"Database connection failed: {e}")
+        return {"status": "error", "message": str(e)}
